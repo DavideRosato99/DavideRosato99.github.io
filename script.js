@@ -5,9 +5,6 @@ const calendarContainer = document.querySelector('.calendar');
 const startDate = 11;
 const endDate = 25;
 
-// Per esempio, per resettare tutto:
-resetCalendar();
-
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
@@ -37,6 +34,9 @@ for (let day = startDate; day <= endDate; day++) {
 
   calendarContainer.appendChild(dayElement);
 }
+
+// Resetta tutto
+resetCalendar();
 
 // Funzione per calcolare la durata dell'animazione in base alla velocità
 function calculateAnimationDuration(velocity) {
@@ -68,13 +68,8 @@ for (let i = 0; i < 2000; i++) {
   snowflakesContainer.appendChild(snowflake);
 }
 
-// Resetta tutto
 function resetCalendar() {
   localStorage.removeItem('openedDays');
-  const openedElements = document.querySelectorAll('.day.opened');
-  openedElements.forEach((element) => {
-    element.classList.remove('opened');
-  });
 
   const allDayElements = document.querySelectorAll('.day');
   allDayElements.forEach((element) => {
