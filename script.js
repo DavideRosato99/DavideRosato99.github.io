@@ -3,7 +3,7 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = 13; // Ottiene il giorno corrente
+const today = currentDate.getDate(); // Ottiene il giorno corrente
 
 let peekedDays = [];
 
@@ -21,11 +21,12 @@ for (let day = startDate; day <= endDate; day++) {
     if (day > today) {
       if (dayElement.classList.contains('revealed')) {
         dayElement.style.backgroundColor = 'red';
-        alert('Io te lo avevo detto.. Guarda cosa hai combinato ora. Senti il tuo fantastico moroso per risolvere la situazione...');
         document.querySelectorAll('.day').forEach((element) => {
           element.style.backgroundColor = 'red';
           element.addEventListener('click', () => {
-            alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
+            if (element.classList.contains('revealed')) {
+              alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
+            }
           });
         });
       } else {
