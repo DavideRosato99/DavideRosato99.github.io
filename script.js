@@ -70,9 +70,11 @@ for (let i = 0; i < 2000; i++) {
 
 function resetCalendar() {
   localStorage.removeItem('openedDays');
-
   const allDayElements = document.querySelectorAll('.day');
-  allDayElements.forEach((element) => {
-    element.classList.remove('opened');
-  });
+  
+  if (new Date().getDate() === 12) {
+    allDayElements.forEach((element) => {
+      element.classList.remove('opened');
+    });
+  }
 }
