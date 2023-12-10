@@ -21,10 +21,14 @@ for (let day = startDate; day <= endDate; day++) {
     if (day > today) {
       if (dayElement.classList.contains('revealed')) {
         dayElement.style.backgroundColor = 'red';
-        alert('Io te lo avevo detto.. Senti il tuo fantastico moroso per risolvere la situazione...');
-        const warningImage = document.getElementById('warningImage');
-        warningImage.style.display = 'block';}
-      else {
+        alert('Io te lo avevo detto.. Guarda cosa hai combinato ora. Senti il tuo fantastico moroso per risolvere la situazione...');
+        document.querySelectorAll('.day').forEach((element) => {
+          element.style.backgroundColor = 'red';
+          element.addEventListener('click', () => {
+            alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
+          });
+        });
+      } else {
         alert(`Ue, non si sbircia!`);
         dayElement.classList.add('revealed');
       }
