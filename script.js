@@ -6,10 +6,18 @@ const endDate = 25;
 const currentDate = new Date();
 const today = 12; // Ottiene il giorno corrente
 
+// Recupera le celle aperte da localStorage se esistono
+let openedDays = JSON.parse(localStorage.getItem('openedDays')) || [];
+
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
   dayElement.textContent = day;
+
+  // Verifica se il giorno è stato aperto in precedenza
+  if (openedDays.includes(day)) {
+    dayElement.classList.add('clicked');
+  }
 
   dayElement.addEventListener('click', () => {
     if (day < today) {
@@ -20,6 +28,12 @@ for (let day = startDate; day <= endDate; day++) {
     if (day > today) {
       alert(`Ue, non si sbircia !`);
       return;
+    }
+
+    // Controlla se il giorno è stato aperto in precedenza
+    if (!openedDays.includes(day)) {
+      openedDays.push(day);
+      localStorage.setItem('openedDays', JSON.stringify(openedDays));
     }
 
     dayElement.classList.add('clicked');
