@@ -21,7 +21,7 @@ for (let day = startDate; day <= endDate; day++) {
     if (day > today) {
       if (dayElement.classList.contains('revealed')) {
         dayElement.style.backgroundColor = 'red';
-        alert('Io te lo avevo detto..');
+        alert('Io te lo avevo detto.. Senti il tuo fantastico moroso per risolvere la situazione...');
         const warningImage = document.getElementById('warningImage');
         warningImage.style.display = 'block';}
       else {
