@@ -18,6 +18,7 @@ for (let day = startDate; day <= endDate; day++) {
     if (firstClick) {
       alert('Ti amo');
       firstClick = false;
+      return;
     }
 
     if (day < today) {
@@ -92,4 +93,4 @@ function resetCalendar() {
 }
 
 // Chiamata a resetCalendar per resettare tutto
-//resetCalendar();
+resetCalendar();
