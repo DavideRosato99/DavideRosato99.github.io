@@ -75,4 +75,4 @@ function resetCalendar() {
 }
 
 // Per esempio, per resettare tutto:
-// resetCalendar();
+resetCalendar();
