@@ -3,24 +3,20 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = currentDate.getDate(); // Ottiene il giorno corrente
-
-let peekedDays = [];
-
-let firstClick = true;
+const today = currentDate.getDate(); // Get the current day
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
-  dayElement.addEventListener('click', () => {
-    if (firstClick) {
-      alert('Ei scema, finalmente hai scoperto che era una cavolata. Non andiamo a Cagliare amo, andiamo a Vienna. Quindi prepara i vestiti pesanti che il 20 sei mia.');
-      firstClick = false;
-      return;
-    }
+  // Check if the day has been opened previously
+  const isDayOpened = localStorage.getItem(`day_${day}_opened`);
+  if (isDayOpened === 'true') {
+    dayElement.classList.add('clicked');
+  }
 
+  dayElement.addEventListener('click', () => {
     if (day < today) {
       alert(`Eddai su Giuli, hai già visto cosa c'era qui sotto..`);
       return;
@@ -44,8 +40,13 @@ for (let day = startDate; day <= endDate; day++) {
       return;
     }
 
-    dayElement.classList.add('clicked');
-    alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
+    if (dayElement.classList.contains('clicked')) {
+      alert(`Hai già aperto il giorno ${day} del calendario dell'Avvento!`);
+    } else {
+      dayElement.classList.add('clicked');
+      localStorage.setItem(`day_${day}_opened`, 'true'); // Save the opened day state to localStorage
+      alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
+    }
   });
 
   // Imposta variabili CSS personalizzate per l'animazione di ciascuna cella
@@ -85,12 +86,15 @@ for (let i = 0; i < 2000; i++) {
 }
 
 function resetCalendar() {
-  localStorage.removeItem('openedDays');
+  for (let day = startDate; day <= endDate; day++) {
+    localStorage.removeItem(`day_${day}_opened`); // Remove saved opened days from localStorage
+  }
+
   const allDayElements = document.querySelectorAll('.day');
   allDayElements.forEach((element) => {
     element.classList.remove('clicked');
   });
 }
 
-// Chiamata a resetCalendar per resettare tutto
-//resetCalendar();
+// Call resetCalendar to reset everything
+// resetCalendar();
