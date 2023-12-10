@@ -6,51 +6,88 @@
   <title>Messaggio di Natale</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-image: url('C:\\Users\\rosat\\Downloads\\moderna-cartolina-di-natale-felice-con-sfondo-di-texture\\227.jpg'); /* Inserisci il percorso dell'immagine */
+      background-image: url('sfondo_natalizio.jpg'); /* Immagine sfondo natalizio */
       background-size: cover;
       background-position: center;
     }
-    .message {
+    .container {
       text-align: center;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.8); /* Aggiunge una sfumatura al messaggio per renderlo più leggibile */
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease-in-out;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
     h1 {
       color: #e74c3c;
       font-size: 36px;
       margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombra testo */
     }
     p {
       color: #333;
       font-size: 18px;
       line-height: 1.6;
+      margin-bottom: 30px;
     }
-    /* Animazioni */
-    @keyframes fadeIn {
+    /* Aggiunta dei fiocchi di neve */
+    .snowflakes {
+      position: fixed;
+      top: -150px;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .snowflake {
+      position: absolute;
+      color: #fff;
+      font-size: 2em;
+      animation: snow 10s linear infinite;
+    }
+    @keyframes snow {
+      0% {
+        transform: translateY(-100vh);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+    /* Animazione testo */
+    .glow {
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
       from {
-        opacity: 0;
+        text-shadow: 0 0 5px #e74c3c, 0 0 10px #e74c3c, 0 0 20px #e74c3c;
       }
       to {
-        opacity: 1;
+        text-shadow: 0 0 10px #e74c3c, 0 0 20px #e74c3c, 0 0 30px #e74c3c;
       }
     }
   </style>
 </head>
 <body>
-  <div class="message">
-    <h1>Ei amo, Buon Natale!</h1>
+  <div class="snowflakes" aria-hidden="true">
+    <!-- Aggiungo più fiocchi di neve -->
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <!-- Aggiungi più fiocchi di neve se vuoi -->
+  </div>
+  <div class="container">
+    <h1 class="glow">Ei amo, Buon Natale!</h1>
     <p>Alla fine, vedi che, anche se per poco, ce ne andiamo via? Spero vivamente ci siano i fantasmagorici mercatini di Natale altrimenti le sento su.</p>
-    <p>Ed ogni tanto abbiamo degli screzi. Ma forse ti amo ancora di più dopo.</p>
   </div>
 </body>
 </html>
