@@ -21,8 +21,10 @@ for (let day = startDate; day <= endDate; day++) {
     if (day > today) {
       if (dayElement.classList.contains('revealed')) {
         dayElement.style.backgroundColor = 'red';
-        document.body.classList.add('red-background');
-      } else {
+        alert('Io te lo avevo detto..');
+        const warningImage = document.getElementById('warningImage');
+        warningImage.style.display = 'block';}
+      else {
         alert(`Ue, non si sbircia!`);
         dayElement.classList.add('revealed');
       }
