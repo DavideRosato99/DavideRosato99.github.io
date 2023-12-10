@@ -12,8 +12,13 @@ for (let day = startDate; day <= endDate; day++) {
   dayElement.textContent = day;
 
   dayElement.addEventListener('click', () => {
-    if (day !== today) {
-      alert(`Sei stupida!`);
+    if (day < today) {
+      alert(`Eddai su Giuli, hai già visto cosa c'era qui sotto..`);
+      return;
+    }
+
+    if (day > today) {
+      alert(`Ue, non si sbircia !`);
       return;
     }
 
