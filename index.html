@@ -2,20 +2,30 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Sfondo Natalizio</title>
+    <title>Onde di colore</title>
     <style>
         body {
-            background-image: url('C:\\Users\\rosat\\Downloads\\ciao.jpg');
-            /* Regola la dimensione e la posizione dello sfondo come preferisci */
-            background-size: cover;
-            background-position: center;
-            /* Evita la ripetizione dell'immagine di sfondo */
-            background-repeat: no-repeat;
+            /* Imposta un'animazione chiamata "cambiaColore" che dura 4 secondi */
+            animation: cambiaColore 4s linear infinite;
+            /* Imposta un gradiente come sfondo */
+            background-image: linear-gradient(to right, green, red, white, red, green);
+            /* Assicura che l'HTML e il corpo del documento occupino l'intera altezza della finestra del browser */
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Definizione dell'animazione */
+        @keyframes cambiaColore {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Contenuto del tuo sito qui -->
+    <!-- Il tuo contenuto qui -->
 </body>
 </html>
-
