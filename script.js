@@ -93,4 +93,4 @@ function resetCalendar() {
 }
 
 // Chiamata a resetCalendar per resettare tutto
-resetCalendar();
+//resetCalendar();
