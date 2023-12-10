@@ -4,7 +4,7 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = currentDate.getDate(); // Ottiene il giorno corrente
+const today = 12; // Ottiene il giorno corrente
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
