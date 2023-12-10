@@ -3,7 +3,8 @@ const calendarContainer = document.querySelector('.calendar');
 const startDate = 11;
 const endDate = 25;
 
-const today = 11; // Esempio: Oggi è l'11 dicembre
+const currentDate = new Date();
+const today = currentDate.getDate(); // Ottiene il giorno corrente
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
@@ -12,11 +13,11 @@ for (let day = startDate; day <= endDate; day++) {
 
   dayElement.addEventListener('click', () => {
     if (day !== today) {
-      alert(`Sei stupida!`); // Mostra un messaggio se la casella non corrisponde al giorno attuale
+      alert(`Sei stupida!`);
       return;
     }
 
-    dayElement.classList.add('clicked'); // Aggiunge la classe 'clicked' al click
+    dayElement.classList.add('clicked');
     alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
   });
 
