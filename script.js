@@ -16,7 +16,7 @@ for (let day = startDate; day <= endDate; day++) {
 
   dayElement.addEventListener('click', () => {
     if (firstClick) {
-      alert('Ti amo');
+      alert('Ei scema, finalmente hai scoperto che era una cavolata. Non andiamo a Cagliare amo, andiamo a Vienna. Quindi prepara i vestiti pesanti che il 20 sei mia.');
       firstClick = false;
       return;
     }
