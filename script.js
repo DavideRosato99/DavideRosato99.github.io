@@ -14,11 +14,6 @@ for (let day = startDate; day <= endDate; day++) {
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
-  // Verifica se il giorno è stato aperto in precedenza
-  if (openedDays.includes(day)) {
-    dayElement.classList.add('clicked');
-  }
-
   dayElement.addEventListener('click', () => {
     if (day < today) {
       alert(`Eddai su Giuli, hai già visto cosa c'era qui sotto..`);
@@ -26,14 +21,14 @@ for (let day = startDate; day <= endDate; day++) {
     }
 
     if (day > today) {
-      alert(`Ue, non si sbircia !`);
+      if (dayElement.classList.contains('revealed')) {
+        dayElement.style.backgroundColor = 'red';
+        document.body.style.backgroundImage = 'url("C:\\Users\\rosat\\Downloads\\moderna-cartolina-di-natale-felice-con-sfondo-di-texture\\227.jpg")';
+      } else {
+        alert(`Ue, non si sbircia!`);
+        dayElement.classList.add('revealed');
+      }
       return;
-    }
-
-    // Controlla se il giorno è stato aperto in precedenza
-    if (!openedDays.includes(day)) {
-      openedDays.push(day);
-      localStorage.setItem('openedDays', JSON.stringify(openedDays));
     }
 
     dayElement.classList.add('clicked');
