@@ -5,6 +5,9 @@ const calendarContainer = document.querySelector('.calendar');
 const startDate = 11;
 const endDate = 25;
 
+// Per esempio, per resettare tutto:
+resetCalendar();
+
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
@@ -72,7 +75,9 @@ function resetCalendar() {
   openedElements.forEach((element) => {
     element.classList.remove('opened');
   });
-}
 
-// Per esempio, per resettare tutto:
-resetCalendar();
+  const allDayElements = document.querySelectorAll('.day');
+  allDayElements.forEach((element) => {
+    element.classList.remove('opened');
+  });
+}
