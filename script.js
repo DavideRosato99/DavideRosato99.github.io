@@ -6,10 +6,17 @@ const endDate = 25;
 const currentDate = new Date();
 const today = 12; // Ottiene il giorno corrente
 
+// Controlla se è presente un valore salvato nello storage
+let openedDays = JSON.parse(localStorage.getItem('openedDays')) || {};
+
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
   dayElement.textContent = day;
+
+  if (openedDays[day]) {
+    dayElement.classList.add('clicked');
+  }
 
   dayElement.addEventListener('click', () => {
     if (day !== today) {
@@ -18,6 +25,8 @@ for (let day = startDate; day <= endDate; day++) {
     }
 
     dayElement.classList.add('clicked');
+    openedDays[day] = true;
+    localStorage.setItem('openedDays', JSON.stringify(openedDays));
     alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
   });
 
