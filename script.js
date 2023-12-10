@@ -7,12 +7,19 @@ const today = currentDate.getDate(); // Ottiene il giorno corrente
 
 let peekedDays = [];
 
+let firstClick = true;
+
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
   dayElement.addEventListener('click', () => {
+    if (firstClick) {
+      alert('Ti amo');
+      firstClick = false;
+    }
+
     if (day < today) {
       alert(`Eddai su Giuli, hai già visto cosa c'era qui sotto..`);
       return;
