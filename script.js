@@ -3,7 +3,7 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = currentDate.getDate(); // Ottiene il giorno corrente
+const today = 13; // Ottiene il giorno corrente
 
 let peekedDays = [];
 
