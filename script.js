@@ -1,32 +1,24 @@
-const today = 12;
-const openedDays = JSON.parse(localStorage.getItem('openedDays')) || [];
-
+// JavaScript
 const calendarContainer = document.querySelector('.calendar');
 const startDate = 11;
 const endDate = 25;
+
+const currentDate = new Date();
+const today = 12; // Ottiene il giorno corrente
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
-  if (openedDays.includes(day)) {
-    dayElement.classList.add('opened');
-  }
-
   dayElement.addEventListener('click', () => {
-    if (day === today) {
-      if (!openedDays.includes(day)) {
-        openedDays.push(day);
-        localStorage.setItem('openedDays', JSON.stringify(openedDays));
-        dayElement.classList.add('opened');
-        alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
-      } else {
-        alert(`Hai già aperto il giorno ${day} del calendario dell'Avvento!`);
-      }
-    } else {
-      alert('Sei stupida!');
+    if (day !== today) {
+      alert(`Sei stupida!`);
+      return;
     }
+
+    dayElement.classList.add('clicked');
+    alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
   });
 
   // Imposta variabili CSS personalizzate per l'animazione di ciascuna cella
@@ -34,9 +26,6 @@ for (let day = startDate; day <= endDate; day++) {
 
   calendarContainer.appendChild(dayElement);
 }
-
-// Resetta tutto
-resetCalendar();
 
 // Funzione per calcolare la durata dell'animazione in base alla velocità
 function calculateAnimationDuration(velocity) {
@@ -66,15 +55,4 @@ for (let i = 0; i < 2000; i++) {
   snowflake.style.height = `${size}px`;
 
   snowflakesContainer.appendChild(snowflake);
-}
-
-function resetCalendar() {
-  localStorage.removeItem('openedDays');
-  const allDayElements = document.querySelectorAll('.day');
-  
-  if (new Date().getDate() === 12) {
-    allDayElements.forEach((element) => {
-      element.classList.remove('opened');
-    });
-  }
 }
