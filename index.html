@@ -1,31 +1,15 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Onde di colore</title>
-    <style>
-        body {
-            /* Imposta un'animazione chiamata "cambiaColore" che dura 8 secondi */
-            animation: cambiaColore 8s linear infinite;
-            /* Imposta un gradiente come sfondo */
-            background: linear-gradient(to right, green 0%, green 33%, red 33%, red 66%, white 66%, white 100%);
-            /* Assicura che l'HTML e il corpo del documento occupino l'intera altezza della finestra del browser */
-            height: 100%;
-            margin: 0;
-        }
-
-        /* Definizione dell'animazione */
-        @keyframes cambiaColore {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 100% 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Calendario dell'Avvento</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Il tuo contenuto qui -->
+  <div class="snowflakes"></div>
+  <div class="calendar">
+    <!-- Il tuo calendario dell'Avvento qui -->
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

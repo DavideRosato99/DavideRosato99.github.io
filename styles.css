@@ -1,0 +1,62 @@
+/* Stili per il body per adattare la pagina allo schermo */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Altezza del viewport */
+  }
+  
+  /* Stili per il calendario */
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background: linear-gradient(to bottom, #0B6623, #000000); /* Sfondo con sfumatura */
+    height: 100%; /* Altezza pari all'altezza del body */
+    width: 100%; /* Larghezza pari alla larghezza del body */
+  }
+  
+  /* Stili per i singoli giorni */
+  .day {
+    width: 100px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* Stili per i fiocchi di neve */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .snowflake {
+    position: absolute;
+    width: 10px; /* Dimensioni più grandi */
+    height: 10px; /* Dimensioni più grandi */
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute; /* Modificato per consentire il posizionamento specifico */
+  animation: snowfall linear infinite;
+  animation-duration: 6s; /* Durata dell'animazione */
+  animation-timing-function: linear; /* Funzione di temporizzazione lineare */
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh); /* Partenza leggermente sopra la finestra */
+  }
+  100% {
+    transform: translateY(110vh); /* Arrivo leggermente sotto la finestra */
+  }
+}
