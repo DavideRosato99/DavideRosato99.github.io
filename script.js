@@ -35,6 +35,10 @@ for (let day = startDate; day <= endDate; day++) {
 
   calendarContainer.appendChild(dayElement);
 }
+localStorage.removeItem('openedDays');
+
+// O se si desidera rimuovere tutti i dati dal localStorage
+localStorage.clear();
 
 // Funzione per calcolare la durata dell'animazione in base alla velocità
 function calculateAnimationDuration(velocity) {
