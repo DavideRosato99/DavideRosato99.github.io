@@ -6,7 +6,6 @@ const currentDate = new Date();
 const today = currentDate.getDate(); // Ottiene il giorno corrente
 
 let peekedDays = [];
-let revealed = false;
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
@@ -20,19 +19,19 @@ for (let day = startDate; day <= endDate; day++) {
     }
 
     if (day > today) {
-      if (revealed) {
-        alert('Io te lo avevo detto.. Guarda cosa hai combinato ora. Senti il tuo fantastico moroso per risolvere la situazione...');
+      if (dayElement.classList.contains('revealed')) {
         dayElement.style.backgroundColor = 'red';
         document.querySelectorAll('.day').forEach((element) => {
+          element.style.backgroundColor = 'red';
           element.addEventListener('click', () => {
-            if (element.style.backgroundColor === 'red') {
+            if (element.classList.contains('revealed')) {
               alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
             }
           });
         });
       } else {
         alert(`Ue, non si sbircia!`);
-        revealed = true;
+        dayElement.classList.add('revealed');
       }
       return;
     }
