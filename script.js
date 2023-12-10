@@ -30,9 +30,9 @@ for (let day = startDate; day <= endDate; day++) {
             }
           });
         });
-        revealed = true;
       } else {
         alert(`Ue, non si sbircia!`);
+        revealed = true;
       }
       return;
     }
