@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Ei amo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messaggio di Natale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .message {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      color: #e74c3c;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #333;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    /* Animazioni */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="message">
     <h1>Ei amo, Buon Natale!</h1>
-    <p>Alla fin fine vedi che, anche se per poco, ce ne andiamo via? Spero vivamente ci siano i fantasmagorici mercatini di Natale altrimenti le sento su.</p>
+    <p>Alla fine, vedi che, anche se per poco, ce ne andiamo via? Spero vivamente ci siano i fantasmagorici mercatini di Natale altrimenti le sento su.</p>
     <p>Ed ogni tanto abbiamo degli screzi. Ma forse ti amo ancora di più dopo.</p>
+  </div>
 </body>
 </html>
