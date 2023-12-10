@@ -1,19 +1,23 @@
-/* Stili per il body per adattare la pagina allo schermo */
+/* Body styles to fit the page to the screen */
 body {
     margin: 0;
     padding: 0;
-    height: 100vh; /* Altezza del viewport */
+    height: 100vh;
   }
   
-  /* Stili per il calendario */
+  /* Calendar styles */
   .calendar {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     padding: 20px;
-    background: linear-gradient(to bottom, #0B6623, #000000); /* Sfondo con sfumatura */
-    height: 100%; /* Altezza pari all'altezza del body */
-    width: 100%; /* Larghezza pari alla larghezza del body */
+    background: linear-gradient(to bottom, #0B6623, #000000);
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    align-items: center;
+    justify-content: center;
   }
   
   /* Stili per i singoli giorni */
@@ -21,16 +25,33 @@ body {
     width: 100px;
     height: 100px;
     background-color: #e0e0e0;
-    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     cursor: pointer;
+    margin: 5px;
+    border-radius: 50%; /* Forma circolare */
+    --animation-duration: calc(4s + var(--delay) * 1s);
+    --x: 0;
+    --y: 0;
+    --delay: 0;
+    animation: bubble var(--animation-duration) infinite ease-in-out alternate;
+    transition: transform 1s ease-in-out;
+  }
+  
+  @keyframes bubble {
+    /* Modifica della traiettoria delle bolle */
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      transform: translate(calc(var(--x) * 20px), calc(var(--y) * 20px)) scale(1.1);
+    }
   }
 
-  /* Stili per i fiocchi di neve */
-.snowflakes {
+  /* Snowflakes styles */
+  .snowflakes {
     position: fixed;
     top: 0;
     left: 0;
@@ -40,23 +61,23 @@ body {
     height: 100%;
   }
   
-  .snowflake {
+  /* Stili per i fiocchi di neve */
+/* Stili per i fiocchi di neve */
+.snowflake {
     position: absolute;
-    width: 10px; /* Dimensioni più grandi */
-    height: 10px; /* Dimensioni più grandi */
     background-color: #fff;
     border-radius: 50%;
-    position: absolute; /* Modificato per consentire il posizionamento specifico */
-  animation: snowfall linear infinite;
-  animation-duration: 6s; /* Durata dell'animazione */
-  animation-timing-function: linear; /* Funzione di temporizzazione lineare */
-}
-
-@keyframes snowfall {
-  0% {
-    transform: translateY(-10vh); /* Partenza leggermente sopra la finestra */
+    position: absolute;
+    animation: snowfall linear infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; /* Consente al fiocco di rimanere alla fine dell'animazione */
   }
-  100% {
-    transform: translateY(110vh); /* Arrivo leggermente sotto la finestra */
+  
+  @keyframes snowfall {
+    0% {
+      transform: translateY(-10vh);
+    }
+    100% {
+      transform: translateY(110vh);
+    }
   }
-}
