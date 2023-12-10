@@ -1,13 +1,11 @@
-// JavaScript
 const calendarContainer = document.querySelector('.calendar');
 const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = 12; // Ottiene il giorno corrente
+const today = currentDate.getDate(); // Ottiene il giorno corrente
 
-// Recupera le celle aperte da localStorage se esistono
-let openedDays = JSON.parse(localStorage.getItem('openedDays')) || [];
+let peekedDays = [];
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
@@ -23,7 +21,7 @@ for (let day = startDate; day <= endDate; day++) {
     if (day > today) {
       if (dayElement.classList.contains('revealed')) {
         dayElement.style.backgroundColor = 'red';
-        document.body.style.backgroundImage = 'url("C:\\Users\\rosat\\Downloads\\moderna-cartolina-di-natale-felice-con-sfondo-di-texture\\227.jpg")';
+        document.body.classList.add('red-background');
       } else {
         alert(`Ue, non si sbircia!`);
         dayElement.classList.add('revealed');
