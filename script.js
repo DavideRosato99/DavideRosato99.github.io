@@ -75,3 +75,14 @@ for (let i = 0; i < 2000; i++) {
 
   snowflakesContainer.appendChild(snowflake);
 }
+
+function resetCalendar() {
+  localStorage.removeItem('openedDays');
+  const allDayElements = document.querySelectorAll('.day');
+  allDayElements.forEach((element) => {
+    element.classList.remove('clicked');
+  });
+}
+
+// Chiamata a resetCalendar per resettare tutto
+resetCalendar();
