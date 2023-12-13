@@ -6,7 +6,7 @@ const currentDate = new Date();
 const today = currentDate.getDate(); // Ottiene il giorno corrente
 // const today = 13;
 
-resetCalendar()
+// resetCalendar()
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
@@ -76,7 +76,13 @@ for (let day = startDate; day <= endDate; day++) {
             dayElement.classList.add('open');
             localStorage.setItem(`day_${day}_open`, 'true');
             
-            alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
+            if (day == 14) {
+              alert('Il regalo per il 14 dicembre è questo calendario funzionante stronzetta. Ciao');
+            }
+            else {
+              alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
+            }
+            
           }
       }
     }
