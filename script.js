@@ -3,7 +3,8 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = currentDate.getDate(); // Ottiene il giorno corrente
+//const today = currentDate.getDate(); // Ottiene il giorno corrente
+const today = 14;
 
 let allRed = true; // Variabile per controllare se tutte le celle sono rosse
 
@@ -12,31 +13,68 @@ for (let day = startDate; day <= endDate; day++) {
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
-  const isDayOpened = localStorage.getItem(`day_${day}_opened`);
+  const isDayOpened = localStorage.getItem(`day_${day}_open`);
+  const isDayRed = localStorage.getItem(`day_${day}_red`);
 
-  if (isDayOpened === 'true') {
-    dayElement.classList.add('clicked');
+  if (isDayOpened) {
+    dayElement.classList.add('open');
+  }
+
+  if (isDayRed) {
+    dayElement.classList.add('red');
   }
 
   dayElement.addEventListener('click', () => {
-    if (day > today) {
+    if (day < today) {
 
     }
 
-    if (day < today) {
-      alert(`Eddai su Giuli, hai già visto cosa c'era qui sotto..`);
-      return;
+    if (day > today) {
+      if (isDayRed) {
+        alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
+        const allDayElements = document.querySelectorAll('.day');
+        allDayElements.forEach((element) => {
+          if (element.classList.contains('open')){
+            element.classList.remove('open');
+          }
+
+          if (element.classList.contains('red')){
+            element.classList.remove('red');
+          }
+
+          element.classList.add('red');
+        });
+
+        for (let day = startDate; day <= endDate; day++) {
+          localStorage.removeItem(`day_${day}_open`);
+          localStorage.removeItem(`day_${day}_red`);
+          localStorage.setItem(`day_${day}_red`, 'true');
+        }
+      }
+
+      else {
+        alert(`Ue, non si sbircia!`);
+        dayElement.classList.add('red');
+        localStorage.setItem(`day_${day}_red`, 'true');
+      }
     }
 
     if (day == today) {
-      if (dayElement.classList.contains('clicked')) {
-        alert(`Hai già aperto il giorno ${day} del calendario dell'Avvento!`);
-      }
-      dayElement.classList.add('clicked');
-      localStorage.setItem(`day_${day}_opened`, 'true'); // Save the opened cell state to localStorage
-      alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
+        if (isDayOpened) { // Se è verde
+          alert('Hai già aperto questo giorno scema');
+        } else {
+          if (isDayRed) {
+            dayElement.classList.remove('red');
+            localStorage.removeItem(`day_${day}_red`);
+          }
+          else {
+            dayElement.classList.add('open');
+            localStorage.setItem(`day_${day}_open`, 'true');
+          }
+          
+          alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
+        }
     }
-
   });
 
   dayElement.style.setProperty('--delay', Math.random() * 2);
@@ -81,15 +119,16 @@ if (!allRed) {
 
 function resetCalendar() {
   for (let day = startDate; day <= endDate; day++) {
-    localStorage.removeItem(`day_${day}_opened`);
+    localStorage.removeItem(`day_${day}_open`);
     localStorage.removeItem(`day_${day}_red`);
   }
 
   const allDayElements = document.querySelectorAll('.day');
   allDayElements.forEach((element) => {
-    element.classList.remove('clicked');
+    element.classList.remove('open');
+    element.classList.remove('red');
     element.style.backgroundColor = '';
   });
 }
 
-//resetCalendar()
+resetCalendar()

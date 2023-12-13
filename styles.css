@@ -20,16 +20,6 @@ body {
     justify-content: center;
   }
 
-  .red-background {
-    background: linear-gradient(to bottom, red, #000000);
-    height: 100vh;
-    width: 100%;
-    margin: auto;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-  }
-  
   /* Stili per i singoli giorni */
   .day {
     width: 100px;
@@ -52,8 +42,12 @@ body {
   transition: background-color 0.5s ease; /* Transizione sul cambio di colore */
 }
 
-.day.clicked {
+.day.open {
   background-color: #00ff00; /* Verde */
+}
+
+.day.red {
+  background-color: red; /* Verde */
 }
 
   @keyframes bubble {
