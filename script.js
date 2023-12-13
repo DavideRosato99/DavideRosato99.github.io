@@ -12,6 +12,12 @@ for (let day = startDate; day <= endDate; day++) {
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
+  const isDayOpened = localStorage.getItem(`day_${day}_opened`);
+
+  if (isDayOpened === 'true') {
+    dayElement.classList.add('clicked');
+  }
+
   dayElement.addEventListener('click', () => {
     if (day > today) {
 
