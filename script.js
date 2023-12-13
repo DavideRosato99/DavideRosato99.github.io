@@ -3,8 +3,8 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-// const today = currentDate.getDate(); // Ottiene il giorno corrente
-const today = 13;
+const today = currentDate.getDate(); // Ottiene il giorno corrente
+// const today = 13;
 
 resetCalendar()
 
@@ -15,6 +15,11 @@ for (let day = startDate; day <= endDate; day++) {
 
   const isDayOpened = localStorage.getItem(`day_${day}_open`);
   const isDayRed = localStorage.getItem(`day_${day}_red`);
+
+  if (day < today) {
+    dayElement.classList.add('open');
+    localStorage.setItem(`day_${day}_open`, 'true');
+  }
 
   if (isDayOpened) {
     dayElement.classList.add('open');
