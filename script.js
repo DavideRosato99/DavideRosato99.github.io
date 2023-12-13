@@ -6,7 +6,7 @@ const currentDate = new Date();
 //const today = currentDate.getDate(); // Ottiene il giorno corrente
 const today = 14;
 
-let allRed = true; // Variabile per controllare se tutte le celle sono rosse
+resetCalendar()
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
@@ -34,6 +34,7 @@ for (let day = startDate; day <= endDate; day++) {
         alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
         const allDayElements = document.querySelectorAll('.day');
         allDayElements.forEach((element) => {
+          element.style.backgroundColor = 'red';
           if (element.classList.contains('open')){
             element.classList.remove('open');
           }
@@ -46,8 +47,12 @@ for (let day = startDate; day <= endDate; day++) {
         });
 
         for (let day = startDate; day <= endDate; day++) {
-          localStorage.removeItem(`day_${day}_open`);
-          localStorage.removeItem(`day_${day}_red`);
+          if (localStorage.getItem(`day_${day}_open`)) {
+            localStorage.removeItem(`day_${day}_open`);
+          }
+          if (localStorage.getItem(`day_${day}_red`)) {
+            localStorage.removeItem(`day_${day}_red`);
+          }
           localStorage.setItem(`day_${day}_red`, 'true');
         }
       }
@@ -112,11 +117,6 @@ for (let i = 0; i < 2000; i++) {
   snowflakesContainer.appendChild(snowflake);
 }
 
-// Alla fine, controlla se tutte le celle sono rosse e, se sì, non effettuare il reset
-if (!allRed) {
-  resetCalendar();
-}
-
 function resetCalendar() {
   for (let day = startDate; day <= endDate; day++) {
     localStorage.removeItem(`day_${day}_open`);
@@ -131,4 +131,4 @@ function resetCalendar() {
   });
 }
 
-resetCalendar()
+// resetCalendar()
