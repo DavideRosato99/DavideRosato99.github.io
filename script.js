@@ -3,53 +3,36 @@ const startDate = 11;
 const endDate = 25;
 
 const currentDate = new Date();
-const today = currentDate.getDate(); // Get the current day
+const today = currentDate.getDate(); // Ottiene il giorno corrente
+
+let allRed = true; // Variabile per controllare se tutte le celle sono rosse
 
 for (let day = startDate; day <= endDate; day++) {
   const dayElement = document.createElement('div');
   dayElement.classList.add('day');
   dayElement.textContent = day;
 
-  // Check if the day has been opened previously
-  const isDayOpened = localStorage.getItem(`day_${day}_opened`);
-  if (isDayOpened === 'true') {
-    dayElement.classList.add('clicked');
-  }
-
   dayElement.addEventListener('click', () => {
+    if (day > today) {
+
+    }
+
     if (day < today) {
       alert(`Eddai su Giuli, hai già visto cosa c'era qui sotto..`);
       return;
     }
 
-    if (day > today) {
-      if (dayElement.classList.contains('revealed')) {
-        dayElement.style.backgroundColor = 'red';
-        document.querySelectorAll('.day').forEach((element) => {
-          element.style.backgroundColor = 'red';
-          element.addEventListener('click', () => {
-            if (element.classList.contains('revealed')) {
-              alert('Sei stata troppo curiosa e non hai saputo aspettare. Ti conviene proprio scrivere qualcosa di carino a Davide per risolvere la situazione');
-            }
-          });
-        });
-      } else {
-        alert(`Ue, non si sbircia!`);
-        dayElement.classList.add('revealed');
+    if (day == today) {
+      if (dayElement.classList.contains('clicked')) {
+        alert(`Hai già aperto il giorno ${day} del calendario dell'Avvento!`);
       }
-      return;
-    }
-
-    if (dayElement.classList.contains('clicked')) {
-      alert(`Hai già aperto il giorno ${day} del calendario dell'Avvento!`);
-    } else {
       dayElement.classList.add('clicked');
-      localStorage.setItem(`day_${day}_opened`, 'true'); // Save the opened day state to localStorage
+      localStorage.setItem(`day_${day}_opened`, 'true'); // Save the opened cell state to localStorage
       alert(`Hai aperto il giorno ${day} del calendario dell'Avvento!`);
     }
+
   });
 
-  // Imposta variabili CSS personalizzate per l'animazione di ciascuna cella
   dayElement.style.setProperty('--delay', Math.random() * 2);
 
   calendarContainer.appendChild(dayElement);
@@ -57,10 +40,10 @@ for (let day = startDate; day <= endDate; day++) {
 
 // Funzione per calcolare la durata dell'animazione in base alla velocità
 function calculateAnimationDuration(velocity) {
-  const minVelocity = 1; // Velocità minima
-  const maxVelocity = 10; // Velocità massima
-  const minDuration = 5; // Durata minima
-  const maxDuration = 20; // Durata massima
+  const minVelocity = 1;
+  const maxVelocity = 10;
+  const minDuration = 5;
+  const maxDuration = 20;
 
   return minDuration + ((velocity - minVelocity) / (maxVelocity - minVelocity)) * (maxDuration - minDuration);
 }
@@ -69,32 +52,38 @@ function calculateAnimationDuration(velocity) {
 const snowflakesContainer = document.querySelector('.snowflakes');
 
 for (let i = 0; i < 2000; i++) {
-  const velocity = Math.random() * 10 + 1; // Genera velocità casuale
-  const animationDuration = calculateAnimationDuration(velocity); // Calcola la durata dell'animazione
+  const velocity = Math.random() * 10 + 1;
+  const animationDuration = calculateAnimationDuration(velocity);
 
   const snowflake = document.createElement('div');
   snowflake.classList.add('snowflake');
-  snowflake.style.left = `${Math.random() * 100}vw`; // Posizione casuale orizzontale
-  snowflake.style.animationDuration = `${animationDuration}s`; // Imposta la durata calcolata
-  snowflake.style.animationDelay = `${Math.random() * 10}s`; // Ritardo casuale per inizio animazione
+  snowflake.style.left = `${Math.random() * 100}vw`;
+  snowflake.style.animationDuration = `${animationDuration}s`;
+  snowflake.style.animationDelay = `${Math.random() * 10}s`;
 
-  const size = Math.ceil(10 / velocity * 1.5); // Dimensioni proporzionali alla velocità
+  const size = Math.ceil(10 / velocity * 1.5);
   snowflake.style.width = `${size}px`;
   snowflake.style.height = `${size}px`;
 
   snowflakesContainer.appendChild(snowflake);
 }
 
+// Alla fine, controlla se tutte le celle sono rosse e, se sì, non effettuare il reset
+if (!allRed) {
+  resetCalendar();
+}
+
 function resetCalendar() {
   for (let day = startDate; day <= endDate; day++) {
-    localStorage.removeItem(`day_${day}_opened`); // Remove saved opened days from localStorage
+    localStorage.removeItem(`day_${day}_opened`);
+    localStorage.removeItem(`day_${day}_red`);
   }
 
   const allDayElements = document.querySelectorAll('.day');
   allDayElements.forEach((element) => {
     element.classList.remove('clicked');
+    element.style.backgroundColor = '';
   });
 }
 
-// Call resetCalendar to reset everything
-// resetCalendar();
+//resetCalendar()
